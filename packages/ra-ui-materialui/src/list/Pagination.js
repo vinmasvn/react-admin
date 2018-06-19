@@ -133,6 +133,7 @@ export class Pagination extends Component {
             page,
             perPage,
             setPage,
+            setPerPage,
             total,
             translate,
             ...rest

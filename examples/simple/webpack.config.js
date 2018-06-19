@@ -32,7 +32,7 @@ module.exports = {
                 '..',
                 'packages',
                 'ra-core',
-                'src'
+                'src',
             ),
             'ra-ui-materialui': path.join(
                 __dirname,
@@ -40,7 +40,7 @@ module.exports = {
                 '..',
                 'packages',
                 'ra-ui-materialui',
-                'src'
+                'src',
             ),
             'react-admin': path.join(
                 __dirname,
@@ -48,7 +48,7 @@ module.exports = {
                 '..',
                 'packages',
                 'react-admin',
-                'src'
+                'src',
             ),
             'ra-data-fakerest': path.join(
                 __dirname,
@@ -56,7 +56,7 @@ module.exports = {
                 '..',
                 'packages',
                 'ra-data-fakerest',
-                'src'
+                'src',
             ),
             'ra-input-rich-text': path.join(
                 __dirname,
@@ -64,7 +64,15 @@ module.exports = {
                 '..',
                 'packages',
                 'ra-input-rich-text',
-                'src'
+                'src',
+            ),
+            'ra-editable-datagrid': path.join(
+                __dirname,
+                '..',
+                '..',
+                'packages',
+                'ra-editable-datagrid',
+                'src',
             ),
         },
     },
