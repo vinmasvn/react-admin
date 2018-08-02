@@ -412,4 +412,32 @@ describe('<AutocompleteInput />', () => {
             });
         });
     });
+
+    describe('Fix issue #2121', () => {
+        it('updates suggestions when input is blurred and refocused', () => {
+            const wrapper = mount(
+                <AutocompleteInput
+                    {...defaultProps}
+                    input={{ value: null }}
+                    choices={[
+                        { id: 1, name: 'ab' },
+                        { id: 2, name: 'abc' },
+                        { id: 3, name: '123' },
+                    ]}
+                />,
+                { context, childContextTypes }
+            );
+            wrapper.find('input').simulate('focus');
+            wrapper
+                .find('input')
+                .simulate('change', { target: { value: 'a' } });
+            expect(wrapper.state('suggestions')).toHaveLength(2);
+            wrapper.find('input').simulate('blur');
+            wrapper.find('input').simulate('focus');
+            wrapper
+                .find('input')
+                .simulate('change', { target: { value: 'a' } });
+            expect(wrapper.state('suggestions')).toHaveLength(2);
+        });
+    });
 });
