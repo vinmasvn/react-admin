@@ -126,7 +126,6 @@ export class AutocompleteInput extends React.Component {
                     limitChoicesToValue && selectedItem
                         ? [selectedItem]
                         : this.props.choices,
-                prevSuggestions: false,
             });
             // Ensure to reset the filter
             this.updateFilter('');
@@ -144,7 +143,6 @@ export class AutocompleteInput extends React.Component {
                     limitChoicesToValue && !dirty && selectedItem
                         ? [selectedItem]
                         : choices,
-                prevSuggestions: false,
             }));
         }
     }
@@ -191,17 +189,8 @@ export class AutocompleteInput extends React.Component {
         }
     };
 
-    handleSuggestionsFetchRequested = () => {
-        this.setState(({ suggestions, prevSuggestions }) => ({
-            suggestions: prevSuggestions ? prevSuggestions : suggestions,
-        }));
-    };
-
     handleSuggestionsClearRequested = () => {
-        this.setState(({ suggestions, prevSuggestions }) => ({
-            suggestions: [],
-            prevSuggestions: prevSuggestions || suggestions,
-        }));
+        this.updateFilter('');
     };
 
     handleMatchSuggestionOrFilter = inputValue => {
@@ -433,7 +422,8 @@ export class AutocompleteInput extends React.Component {
                 alwaysRenderSuggestions={alwaysRenderSuggestions}
                 onSuggestionSelected={this.handleSuggestionSelected}
                 onSuggestionsFetchRequested={
-                    this.handleSuggestionsFetchRequested
+                    // If we don't call a function here the app goes into to an infinite loop and crashes.
+                    () => null
                 }
                 onSuggestionsClearRequested={
                     this.handleSuggestionsClearRequested
